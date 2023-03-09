@@ -14,6 +14,7 @@ class MergeSortTest extends Properties("MergeSort sorts a list") {
     }
 
     property("of type Int decreasing order") = forAll { (l1: List[Int], l2: List[Int]) =>
+        implicit val order = Ordering.fromLessThan[Int](_ > _)
         MergeSort(l1 ++ l2) == MergeSort(l2 ++ l1)
     }
 
